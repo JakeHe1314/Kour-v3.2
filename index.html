@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kour社 | 联系我们</title>
+    <title>Kour社 | 即刻开战</title>
     <style>
         :root {
             --bg-1: #060a13;
             --bg-2: #0d1728;
-            --bg-3: #111827;
-            --panel: rgba(15, 23, 42, 0.72);
-            --panel-strong: rgba(17, 24, 39, 0.92);
-            --panel-soft: rgba(148, 163, 184, 0.08);
-            --border: rgba(148, 163, 184, 0.2);
+            --bg-3: #121d2d;
+            --surface: rgba(15, 23, 42, 0.82);
+            --surface-strong: rgba(15, 23, 42, 0.96);
+            --glass: rgba(148, 163, 184, 0.06);
+            --glass-border: rgba(148, 163, 184, 0.18);
             --text: #edf2ff;
-            --text-muted: #a7b3c9;
+            --text-muted: #a9b6d1;
+            --accent: #ff3c38;
+            --accent-glow: rgba(255, 60, 56, 0.44);
+            --accent2: #ffb800;
+            --accent3: #5eead4;
             --gold: #f4c86b;
-            --gold-strong: #d9a441;
-            --accent: #8b5cf6;
-            --accent-2: #5eead4;
-            --accent-3: #60a5fa;
-            --shadow: rgba(0, 0, 0, 0.42);
+            --green: #4ade80;
             --radius: 22px;
             --radius-sm: 16px;
+            --transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1.2);
         }
 
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
@@ -34,18 +37,17 @@
         }
 
         body {
-            margin: 0;
-            min-height: 100vh;
             font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
-            color: var(--text);
-            line-height: 1.7;
             background:
-                radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.30), transparent 18%),
-                radial-gradient(circle at 80% 10%, rgba(96, 165, 250, 0.20), transparent 20%),
-                radial-gradient(circle at 65% 80%, rgba(94, 234, 212, 0.18), transparent 22%),
-                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 30%, var(--bg-3) 100%);
-            position: relative;
+                radial-gradient(circle at 20% 15%, rgba(139, 92, 246, 0.28), transparent 18%),
+                radial-gradient(circle at 82% 10%, rgba(94, 234, 212, 0.18), transparent 20%),
+                radial-gradient(circle at 70% 75%, rgba(255, 60, 56, 0.12), transparent 26%),
+                linear-gradient(140deg, var(--bg-1) 0%, var(--bg-2) 35%, var(--bg-3) 100%);
+            color: var(--text);
+            min-height: 100vh;
             overflow-x: hidden;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
             letter-spacing: 0.02em;
         }
 
@@ -57,181 +59,1328 @@
                 linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
             background-size: 28px 28px;
-            mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
+            mask-image: radial-gradient(circle at center, black 33%, transparent 100%);
             pointer-events: none;
+            z-index: 0;
+        }
+
+        a {
+            color: inherit;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 32px 24px;
+            padding: 0 24px;
             position: relative;
             z-index: 1;
         }
 
+        header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background: rgba(11, 12, 16, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        .btn-nav {
+            padding: 10px 24px;
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: var(--text);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-nav:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .hero {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #dfe6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h1 .highlight {
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 16px 48px;
+            background: linear-gradient(135deg, var(--accent), #ff5d4d);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px var(--accent-glow);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            padding: 16px 48px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .warning-strip {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-top: 60px;
+        }
+
+        .warning-header {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .warning-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 60, 56, 0.07);
+            border: 2px solid rgba(255, 60, 56, 0.35);
+            border-radius: 14px;
+            padding: 16px 24px;
+            width: 100%;
+            max-width: 520px;
+            transition: var(--transition);
+            animation: pulseWarn 3s ease-in-out infinite;
+        }
+
+        .warning-item:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .warning-item:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes pulseWarn {
+            0%, 100% {
+                border-color: rgba(255, 60, 56, 0.35);
+                box-shadow: 0 0 0 rgba(255, 60, 56, 0);
+            }
+            50% {
+                border-color: rgba(255, 60, 56, 0.7);
+                box-shadow: 0 0 24px rgba(255, 60, 56, 0.2);
+            }
+        }
+
         .section {
-            padding: 72px 0 40px;
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            font-size: 16px;
+        }
+
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .mode-card {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mode-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .mode-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .badge-hot {
+            background: rgba(255, 60, 56, 0.15);
+            color: var(--accent);
+        }
+
+        .badge-new {
+            background: rgba(94, 234, 212, 0.15);
+            color: var(--accent3);
+        }
+
+        .badge-classic {
+            background: rgba(255, 184, 0, 0.15);
+            color: var(--accent2);
+        }
+
+        .badge-tactical {
+            background: rgba(74, 222, 128, 0.15);
+            color: var(--green);
+        }
+
+        .mode-icon {
+            font-size: 52px;
+            margin-bottom: 16px;
+        }
+
+        .mode-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .mode-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .mode-meta {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 18px;
+            font-size: 12px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .mode-meta span {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .character-card {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .character-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .character-card.multi-weapon {
+            border-left: 3px solid var(--accent2);
+        }
+
+        .char-num {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 56px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.04);
+            pointer-events: none;
+        }
+
+        .character-card .char-name {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        .weapon-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .weapon-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .weapon-tag .tag-emoji {
+            font-size: 15px;
+        }
+
+        .character-desc {
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .weapon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .weapon-card {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .weapon-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .weapon-card .wname {
+            font-weight: 800;
+            font-size: 17px;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .weapon-card .wtype {
+            display: inline-block;
+            font-size: 11px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .weapon-card .wdesc {
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .weapon-card .wdesc.gold {
+            color: var(--gold);
+            font-weight: 600;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+        }
+
+        .weapon-card .wdesc.trash {
+            color: #999;
+            font-style: italic;
+            text-decoration: line-through;
+            text-decoration-color: rgba(255, 60, 56, 0.3);
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .control-item {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .control-item:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .key-icon {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 8px 18px;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .control-item p {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .newsletter-wrap {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 28px;
+            align-items: stretch;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .newsletter-card {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 60, 56, 0.15), rgba(94, 234, 212, 0.08), transparent);
+            pointer-events: none;
+        }
+
+        .newsletter-badge {
+            display: inline-block;
+            padding: 7px 16px;
+            border-radius: 50px;
+            background: rgba(255, 60, 56, 0.1);
+            border: 1px solid rgba(255, 60, 56, 0.35);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
             position: relative;
             z-index: 1;
+        }
+
+        .newsletter-title {
+            font-size: clamp(26px, 4vw, 40px);
+            font-weight: 900;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-desc {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .coming-soon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 220px;
+            padding: 16px 28px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 184, 0, 0.6);
+            background: rgba(255, 184, 0, 0.08);
+            color: var(--accent2);
+            font-weight: 900;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-mini {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 260px;
+        }
+
+        .mini-label {
+            color: var(--accent3);
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .mini-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 18px 16px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .mini-box strong {
+            display: block;
+            color: var(--text);
+            font-size: 16px;
+            margin-bottom: 6px;
         }
 
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 28px;
+            gap: 24px;
             max-width: 900px;
             margin: 0 auto;
         }
 
         .contact-card {
-            position: relative;
-            background: linear-gradient(180deg, rgba(15,23,42,0.78), rgba(15,23,42,0.94));
-            border: 1px solid rgba(244, 200, 107, 0.28);
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
             border-radius: var(--radius);
-            padding: 36px 28px;
+            padding: 32px;
+            transition: var(--transition);
             text-align: center;
-            box-shadow:
-                0 18px 40px rgba(0, 0, 0, 0.38),
-                inset 0 1px 0 rgba(255,255,255,0.08);
-            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .contact-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(244, 200, 107, 0.75), rgba(96, 165, 250, 0.35), rgba(139, 92, 246, 0.45));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
+            position: relative;
+            overflow: hidden;
         }
 
         .contact-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 26px 52px rgba(0, 0, 0, 0.5);
-            border-color: rgba(244, 200, 107, 0.52);
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
         }
 
         .contact-icon {
-            width: 78px;
-            height: 78px;
-            margin: 0 auto 18px;
-            display: grid;
-            place-items: center;
-            border-radius: 50%;
-            font-size: 34px;
-            background: linear-gradient(135deg, rgba(244, 200, 107, 0.18), rgba(96, 165, 250, 0.18));
-            border: 1px solid rgba(244, 200, 107, 0.28);
-            box-shadow: inset 0 0 22px rgba(244, 200, 107, 0.12);
+            font-size: 40px;
+            margin-bottom: 16px;
         }
 
         .contact-card h3 {
-            margin: 0 0 10px;
-            font-size: clamp(1.5rem, 2vw, 2.15rem);
+            font-size: 20px;
+            margin-bottom: 10px;
             color: var(--text);
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
         }
 
         .contact-card p {
-            margin: 0 0 22px;
             color: var(--text-muted);
-            font-size: 0.96rem;
-            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 18px;
+            line-height: 1.5;
         }
 
         .contact-link {
             display: inline-block;
-            padding: 12px 28px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, rgba(244, 200, 107, 0.18), rgba(139, 92, 246, 0.18));
-            border: 1px solid rgba(244, 200, 107, 0.32);
+            padding: 10px 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
             color: var(--text);
             text-decoration: none;
-            font-weight: 700;
-            font-size: 0.96rem;
-            transition: all 0.25s ease;
-            box-shadow: 0 10px 25px rgba(244, 200, 107, 0.08);
+            font-weight: 600;
+            font-size: 14px;
+            transition: var(--transition);
         }
 
         .contact-link:hover {
-            background: linear-gradient(135deg, rgba(244, 200, 107, 0.25), rgba(139, 92, 246, 0.28));
-            border-color: rgba(244, 200, 107, 0.55);
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 18px var(--accent-glow);
+            color: #fff;
+        }
+
+        .invite-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .invite-card {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .invite-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .invite-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .invite-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .invite-card .invite-desc {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .invite-input-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .invite-input {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: var(--text);
+            font-size: 14px;
+            text-align: center;
+            width: 240px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .btn-copy {
+            padding: 12px 24px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-copy:hover {
+            box-shadow: 0 0 20px var(--accent-glow);
             transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(139, 92, 246, 0.18);
+        }
+
+        .btn-copy-text {
+            padding: 12px 28px;
+            background: var(--accent2);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-copy-text:hover {
+            box-shadow: 0 0 20px rgba(255, 184, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .copy-msg {
+            color: var(--green);
+            font-size: 13px;
+            margin-top: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            height: 20px;
+        }
+
+        .copy-msg.show {
+            opacity: 1;
+        }
+
+        .invite-warning-box {
+            max-width: 700px;
+            margin: 30px auto 0;
+            padding: 20px 24px;
+            background: rgba(255, 60, 56, 0.06);
+            border: 1px solid rgba(255, 60, 56, 0.25);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .invite-warning-box .warn-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .invite-warning-box .warn-text {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .cta-banner {
+            text-align: center;
+            padding: 80px 0;
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            margin-bottom: 80px;
+        }
+
+        .cta-banner h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .cta-banner .btn-primary {
+            margin-top: 30px;
         }
 
         footer {
-            padding: 20px 0 36px;
-            border-top: 1px solid rgba(148, 163, 184, 0.12);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--glass-border);
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.92rem;
-            position: relative;
-            z-index: 1;
+            font-size: 14px;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
-            gap: 14px 22px;
-            margin-bottom: 14px;
         }
 
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
-            transition: color 0.2s ease;
+            transition: var(--transition);
         }
 
         .footer-links a:hover {
-            color: var(--gold);
+            color: var(--accent);
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--glass-border);
+            margin: 0 auto 24px;
+        }
+
+        footer .copyright {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 900px) {
+            .newsletter-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 0 20px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
         }
 
         @media (max-width: 640px) {
-            .section {
-                padding-top: 56px;
+            .hero {
+                min-height: auto;
+                padding-top: 80px;
             }
 
-            .contact-card {
-                padding: 28px 22px;
-            }
-
-            .contact-link {
+            .btn-primary,
+            .btn-secondary {
                 width: 100%;
+                justify-content: center;
+            }
+
+            .cta-group {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <section id="contact" class="section">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">🤝</div>
-                    <h3>站长</h3>
-                    <p>站长主页，欢迎交流和合作。</p>
-                    <a href="https://space.bilibili.com/1768253735" class="contact-link" target="_blank" rel="noopener">访问主页 →</a>
+    <header>
+        <a href="#" class="logo">Kour<span>社</span></a>
+        <nav>
+            <ul>
+                <li><a href="#modes">游戏模式</a></li>
+                <li><a href="#characters">角色介绍</a></li>
+                <li><a href="#weapons">武器速查</a></li>
+                <li><a href="#controls">操作指南</a></li>
+                <li><a href="#newsletter">Kour社周报</a></li>
+                <li><a href="#invite">邀请好友</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </nav>
+        <button class="btn-nav" id="btnPlayNav">🔥 免费游玩</button>
+        <button class="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>在 <span class="highlight">Kour社</span> 争夺每一场胜利</h1>
+                    <p class="subtitle">超燃战斗体验，极致竞技快感，加入最强开局，开启你的战场传奇。</p>
+                    <div class="cta-group">
+                        <button class="btn-primary" id="btnPlayHero">🔥 免费游玩 · 即刻开战</button>
+                        <a href="#modes" class="btn-secondary">了解赛季</a>
+                    </div>
+                    <div class="warning-strip">
+                        <div class="warning-header">
+                            <div class="warning-item"><span style="color: var(--accent); font-weight: 900; font-size: 20px; flex-shrink: 0;">1</span><span style="color: var(--accent); font-weight: 700;">高强度竞技</span></div>
+                            <div class="warning-item"><span style="color: var(--accent); font-weight: 900; font-size: 20px; flex-shrink: 0;">2</span><span style="color: var(--accent); font-weight: 700;">多模式切换</span></div>
+                            <div class="warning-item"><span style="color: var(--accent); font-weight: 900; font-size: 20px; flex-shrink: 0;">3</span><span style="color: var(--accent); font-weight: 700;">高自由度玩法</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <section class="section" id="modes">
+            <div class="container">
+                <h2 class="section-title">游戏模式</h2>
+                <p class="section-desc">每一种玩法都能调整你的作战节奏，快节奏冲刺与稳准压制同样精彩。</p>
+                <div class="modes-grid">
+                    <div class="mode-card">
+                        <span class="mode-badge badge-hot">热门</span>
+                        <div class="mode-icon">🔥</div>
+                        <h3>爆破竞技</h3>
+                        <p>高压推进与精准压制，适合喜欢强对抗的玩家。</p>
+                        <div class="mode-meta">
+                            <span>4v4</span>
+                            <span>12分钟</span>
+                        </div>
+                    </div>
+                    <div class="mode-card">
+                        <span class="mode-badge badge-classic">经典</span>
+                        <div class="mode-icon">🎯</div>
+                        <h3>经典对战</h3>
+                        <p>更纯粹的击杀节奏和稳定站位，适合快速上手。</p>
+                        <div class="mode-meta">
+                            <span>5v5</span>
+                            <span>对称地图</span>
+                        </div>
+                    </div>
+                    <div class="mode-card">
+                        <span class="mode-badge badge-new">新作</span>
+                        <div class="mode-icon">⚡</div>
+                        <h3>极限速射</h3>
+                        <p>快速反应，极致机动，专属于敢冲锋敢开火的玩家。</p>
+                        <div class="mode-meta">
+                            <span>3v3</span>
+                            <span>随机装置</span>
+                        </div>
+                    </div>
+                    <div class="mode-card">
+                        <span class="mode-badge badge-tactical">战术</span>
+                        <div class="mode-icon">🛡️</div>
+                        <h3>占点守备</h3>
+                        <p>团战配合和节奏控制，适合喜欢思路和站位的玩家。</p>
+                        <div class="mode-meta">
+                            <span>双旗争夺</span>
+                            <span>团队作战</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="characters">
+            <div class="container">
+                <h2 class="section-title">角色介绍</h2>
+                <p class="section-desc">每位角色都具备独特风格，选对角色，整局体验完全不同。</p>
+                <div class="characters-grid">
+                    <div class="character-card multi-weapon">
+                        <div class="char-num">01</div>
+                        <div class="char-name">艾伦·猎刃</div>
+                        <div class="weapon-tags">
+                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> AK-47</span>
+                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> AK-109</span>
+                        </div>
+                        <p class="character-desc">高速冲锋型角色，出手稳定，适合近距离强压和快速消耗对手。</p>
+                    </div>
+                    <div class="character-card multi-weapon">
+                        <div class="char-num">02</div>
+                        <div class="char-name">泽拉·断弦</div>
+                        <div class="weapon-tags">
+                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> AWP</span>
+                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> 9K</span>
+                        </div>
+                        <p class="character-desc">高爆发狙击型角色，擅长切入和精准一击打掉关键目标。</p>
+                    </div>
+                    <div class="character-card multi-weapon">
+                        <div class="char-num">03</div>
+                        <div class="char-name">帕克·恒流</div>
+                        <div class="weapon-tags">
+                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> P90</span>
+                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> UZI</span>
+                        </div>
+                        <p class="character-desc">爆发压制型角色，兼具机动和火力，适合打击节奏快、乱斗频繁的局面。</p>
+                    </div>
+                    <div class="character-card multi-weapon">
+                        <div class="char-num">04</div>
+                        <div class="char-name">米兰·守望</div>
+                        <div class="weapon-tags">
+                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> PKM</span>
+                        </div>
+                        <p class="character-desc">稳定输出���角色，适合站位压制，负责控场和消耗核心。</p>
+                    </div>
+                    <div class="character-card multi-weapon">
+                        <div class="char-num">05</div>
+                        <div class="char-name">瑞克·狂雷</div>
+                        <div class="weapon-tags">
+                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> RPG</span>
+                        </div>
+                        <p class="character-desc">高威胁爆破型，擅长破阵和威慑对面推进路线。</p>
+                    </div>
+                    <div class="character-card multi-weapon">
+                        <div class="char-num">06</div>
+                        <div class="char-name">赛娅·星潮</div>
+                        <div class="weapon-tags">
+                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> MP5</span>
+                        </div>
+                        <p class="character-desc">灵活支援型角色，适合团战插入与关键时刻切入支援。</p>
+                    </div>
+                    <div class="character-card multi-weapon">
+                        <div class="char-num">07</div>
+                        <div class="char-name">托马斯·影刃</div>
+                        <div class="weapon-tags">
+                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> XM1014</span>
+                        </div>
+                        <p class="character-desc">近战爆发强，擅长高压压制与快速推进，适合后排扫荡。</p>
+                    </div>
+                    <div class="character-card multi-weapon">
+                        <div class="char-num">08</div>
+                        <div class="char-name">雪莉·霜眠</div>
+                        <div class="weapon-tags">
+                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> SCAR</span>
+                        </div>
+                        <p class="character-desc">平衡型角色，兼顾防守与压制，适合多场景切换。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="weapons">
+            <div class="container">
+                <h2 class="section-title">武器速查</h2>
+                <p class="section-desc">合理武器选择决定胜负：快节奏冲锋、远距离压制、团队支援各司其职。</p>
+                <div class="weapon-grid">
+                    <div class="weapon-card">
+                        <div class="wname">AK-47</div>
+                        <span class="wtype">主武器</span>
+                        <p class="wdesc">冲锋型经典武器，稳定输出强，适合近中距离战斗。</p>
+                    </div>
+                    <div class="weapon-card">
+                        <div class="wname">AK-109</div>
+                        <span class="wtype">主武器</span>
+                        <p class="wdesc">高精准度的进攻武器，覆盖输出稳定，适合稳打稳输。</p>
+                    </div>
+                    <div class="weapon-card">
+                        <div class="wname">AWP</div>
+                        <span class="wtype">狙击</span>
+                        <p class="wdesc gold">高爆发单点输出，命中一击即产生致命威胁。</p>
+                    </div>
+                    <div class="weapon-card">
+                        <div class="wname">9K</div>
+                        <span class="wtype">冲锋</span>
+                        <p class="wdesc">快速切入，适合强压和追击，对战术路线追杀有明显优势。</p>
+                    </div>
+                    <div class="weapon-card">
+                        <div class="wname">P90</div>
+                        <span class="wtype">主武器</span>
+                        <p class="wdesc">弹匣容量大，持续压制能力极强，适合团战消耗。</p>
+                    </div>
+                    <div class="weapon-card">
+                        <div class="wname">UZI</div>
+                        <span class="wtype">副武器</span>
+                        <p class="wdesc">极快的射速和机动性能，适合近战突袭。</p>
+                    </div>
+                    <div class="weapon-card">
+                        <div class="wname">MP5</div>
+                        <span class="wtype">冲锋</span>
+                        <p class="wdesc">平衡型武器，兼顾稳定和控制输出，适合多场景切换。</p>
+                    </div>
+                    <div class="weapon-card">
+                        <div class="wname">PKM</div>
+                        <span class="wtype">重火力</span>
+                        <p class="wdesc">高威胁压制武器，适合守点和火力压制。</p>
+                    </div>
+                    <div class="weapon-card">
+                        <div class="wname">RPG</div>
+                        <span class="wtype">爆破</span>
+                        <p class="wdesc">高破坏性武器，能打断对面推进和关键站点。</p>
+                    </div>
+                    <div class="weapon-card">
+                        <div class="wname">XM1014</div>
+                        <span class="wtype">霰弹</span>
+                        <p class="wdesc">近战爆发很强，适合门口守位和强压对手。</p>
+                    </div>
+                    <div class="weapon-card">
+                        <div class="wname">SCAR</div>
+                        <span class="wtype">平衡</span>
+                        <p class="wdesc">稳定与速度兼具，适合各类中距离交火。</p>
+                    </div>
+                    <div class="weapon-card">
+                        <div class="wname">旧装备</div>
+                        <span class="wtype">废弃</span>
+                        <p class="wdesc trash">老旧杂项，已被新版本整体更新替代，战场上不再主流。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="controls">
+            <div class="container">
+                <h2 class="section-title">操作指南</h2>
+                <p class="section-desc">掌握基本操作后，战场上的节奏和反应能力会大幅提升。</p>
+                <div class="controls-grid">
+                    <div class="control-item">
+                        <div class="key-icon">W</div>
+                        <p>前进，推进路线规划，适合快速切进敌方范围。</p>
+                    </div>
+                    <div class="control-item">
+                        <div class="key-icon">A / D</div>
+                        <p>左右移动，配合走位和切枪，主动更具优势。</p>
+                    </div>
+                    <div class="control-item">
+                        <div class="key-icon">S</div>
+                        <p>后撤，适用于调整节奏或规避高危路线。</p>
+                    </div>
+                    <div class="control-item">
+                        <div class="key-icon">Shift</div>
+                        <p>冲刺，强移动和瞬间拉扯对位的重要操作。</p>
+                    </div>
+                    <div class="control-item">
+                        <div class="key-icon">Space</div>
+                        <p>跳跃和平台切换，规划高地与掩体使用。</p>
+                    </div>
+                    <div class="control-item">
+                        <div class="key-icon">Mouse</div>
+                        <p>精准瞄准与灵敏移动，决定你在战场上的命中率。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="newsletter">
+            <div class="container">
+                <div class="newsletter-wrap">
+                    <div class="newsletter-card">
+                        <span class="newsletter-badge">Kour社周报</span>
+                        <h3 class="newsletter-title">更多资讯、赛事和版本更新，都在这里。</h3>
+                        <p class="newsletter-desc">最新赛季的平衡调整、活动信息和热门攻略，我们会在第一时间更新，帮助你更快适应战场节奏。</p>
+                        <div class="coming-soon">🚀 即将上线</div>
+                    </div>
+                    <div class="newsletter-mini">
+                        <div class="mini-label">速报</div>
+                        <div class="mini-box">
+                            <strong>赛季预告</strong>
+                            新地图与重制装备将于本周同步上线，强化移动与控点系统。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="invite">
+            <div class="container">
+                <h2 class="section-title">邀请好友</h2>
+                <p class="section-desc">把战斗邀请给你最亲密的战友，一起开启更高强度的对战体验。</p>
+                <div class="invite-grid">
+                    <div class="invite-card">
+                        <div class="invite-icon">🎮</div>
+                        <h3>邀请码</h3>
+                        <p class="invite-desc">复制后可直接分享，快速进入同一战队或活动。</p>
+                        <div class="invite-input-row">
+                            <input class="invite-input" type="text" value="Kour-Invite-2026" readonly>
+                            <button class="btn-copy" id="copyInvite">复制</button>
+                        </div>
+                        <div class="copy-msg" id="copyMsg">已复制</div>
+                    </div>
+                    <div class="invite-card">
+                        <div class="invite-icon">🤝</div>
+                        <h3>好友招募</h3>
+                        <p class="invite-desc">加入更稳定的队伍，组建强力作战小队，提升胜率。</p>
+                        <button class="btn-copy-text" id="copyTextBtn">复制招募文案</button>
+                        <div class="copy-msg" id="copyTextMsg">已复制</div>
+                    </div>
+                </div>
+                <div class="invite-warning-box">
+                    <div class="warn-icon">⚠️</div>
+                    <div class="warn-text">仅限合法、健康、非恶意形式邀请，禁止违规传播或误导行为。</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="container">
+                <h2 class="section-title">联系我们</h2>
+                <p class="section-desc">我们欢迎玩家交流、反馈和合作。</p>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">🤝</div>
+                        <h3>站长</h3>
+                        <p>站长主页，欢迎交流和合作。</p>
+                        <a href="https://space.bilibili.com/1768253735" class="contact-link" target="_blank" rel="noopener">访问主页 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="cta-banner">
+                <h2>准备好了吗？战场在等你。</h2>
+                <p style="color: var(--text-muted);">选择你的角色，拿起武器，在 Kour社 证明你的实力。</p>
+                <button class="btn-primary" id="btnPlayBanner">🔥 免费游玩 · 即刻开战</button>
+            </div>
         </div>
-    </section>
+    </main>
 
     <footer>
         <div class="container">
             <div class="footer-links">
+                <a href="#modes">游戏模式</a>
+                <a href="#characters">角色介绍</a>
+                <a href="#weapons">武器速查</a>
+                <a href="#controls">操作指南</a>
+                <a href="#newsletter">Kour社周报</a>
+                <a href="#invite">邀请好友</a>
                 <a href="#contact">联系我们</a>
                 <a href="https://space.bilibili.com/1768253735" target="_blank" rel="noopener">站长</a>
             </div>
+            <div class="footer-divider"></div>
+            <p class="copyright">&copy; 2026 Kour社. All rights reserved. Made with ❤️ for FPS gamers worldwide.</p>
         </div>
     </footer>
+
+    <script>
+        const inviteCode = 'Kour-Invite-2026';
+        const recruitText = 'Kour社招募新成员，热爱竞技 FPS 和团队协作，欢迎加入我们！';
+
+        function showCopyMessage(el) {
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 1200);
+        }
+
+        document.getElementById('copyInvite').addEventListener('click', function () {
+            navigator.clipboard.writeText(inviteCode).then(() => {
+                showCopyMessage(document.getElementById('copyMsg'));
+            }).catch(() => {
+                showCopyMessage(document.getElementById('copyMsg'));
+            });
+        });
+
+        document.getElementById('copyTextBtn').addEventListener('click', function () {
+            navigator.clipboard.writeText(recruitText).then(() => {
+                showCopyMessage(document.getElementById('copyTextMsg'));
+            }).catch(() => {
+                showCopyMessage(document.getElementById('copyTextMsg'));
+            });
+        });
+
+        document.getElementById('btnPlayHero').addEventListener('click', function () {
+            alert('Kour社：即刻开战，准备好迎接战场了吗？');
+        });
+        document.getElementById('btnPlayNav').addEventListener('click', function () {
+            alert('Kour社：即刻开战，准备好迎接战场了吗？');
+        });
+        document.getElementById('btnPlayBanner').addEventListener('click', function () {
+            alert('Kour社：即刻开战，准备好迎接战场了吗？');
+        });
+    </script>
 </body>
 </html>
