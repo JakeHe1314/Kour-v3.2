@@ -227,206 +227,225 @@
 
         .btn-primary {
             padding: 16px 48px;
-            background: linear-gradient(135deg, var(--accent), #ff5d4d);
+            background: var(--accent);
             color: white;
             border: none;
-            border-radius: 50px;
+            border-radius: 999px;
             font-size: 18px;
             font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 10px 30px var(--accent-glow);
+            box-shadow: 0 10px 30px rgba(255, 60, 56, 0.35);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 8px;
         }
 
         .btn-primary:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 40px var(--accent-glow);
+            box-shadow: 0 20px 40px rgba(255, 60, 56, 0.5);
         }
 
         .btn-secondary {
             padding: 16px 48px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             color: var(--text);
             border: 1px solid var(--glass-border);
-            border-radius: 50px;
+            border-radius: 999px;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255,255,255,0.12);
+        }
+
+        .game-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 999;
+        }
+
+        .game-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .game-modal {
+            width: min(95vw, 1400px);
+            height: min(90vh, 900px);
+            max-width: 1400px;
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 80px rgba(255, 60, 56, 0.18);
+        }
+
+        .game-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        .game-modal-header span {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--accent);
+        }
+
+        .btn-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .btn-close:hover {
+            background: var(--accent);
+        }
+
+        .game-modal iframe {
+            flex: 1;
+            width: 100%;
+            height: calc(100% - 72px);
+            border: none;
+            display: block;
         }
 
         .warning-strip {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 16px;
-            margin-top: 60px;
-        }
-
-        .warning-header {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
-        }
-
-        .warning-item {
-            display: flex;
-            align-items: center;
             gap: 12px;
-            background: rgba(255, 60, 56, 0.07);
-            border: 2px solid rgba(255, 60, 56, 0.35);
-            border-radius: 14px;
-            padding: 16px 24px;
-            width: 100%;
-            max-width: 520px;
-            transition: var(--transition);
-            animation: pulseWarn 3s ease-in-out infinite;
+            padding: 14px 24px;
+            background: rgba(255, 193, 7, 0.08);
+            border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+            color: #fbd38d;
+            font-size: 14px;
+            text-align: center;
         }
 
-        .warning-item:nth-child(2) {
-            animation-delay: 0.5s;
-        }
-
-        .warning-item:nth-child(3) {
-            animation-delay: 1s;
-        }
-
-        @keyframes pulseWarn {
-            0%, 100% {
-                border-color: rgba(255, 60, 56, 0.35);
-                box-shadow: 0 0 0 rgba(255, 60, 56, 0);
-            }
-            50% {
-                border-color: rgba(255, 60, 56, 0.7);
-                box-shadow: 0 0 24px rgba(255, 60, 56, 0.2);
-            }
+        .warning-strip strong {
+            color: #ffd76a;
         }
 
         .section {
-            padding: 100px 0;
+            padding: 110px 0;
+            position: relative;
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
-            font-size: 36px;
+            margin-bottom: 44px;
+        }
+
+        .section-kicker {
+            display: inline-block;
+            color: var(--accent3);
+            font-size: 12px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
-        .section-desc {
-            text-align: center;
+        .section-header h2 {
+            font-size: clamp(32px, 5vw, 52px);
+            margin-bottom: 18px;
+            line-height: 1.1;
+        }
+
+        .section-header p {
+            max-width: 720px;
+            margin: 0 auto;
             color: var(--text-muted);
-            margin-bottom: 60px;
-            font-size: 16px;
+            font-size: 17px;
         }
 
-        .modes-grid {
+        .mode-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 24px;
         }
 
         .mode-card {
-            background: var(--surface);
+            background: rgba(255,255,255,0.03);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius);
-            padding: 32px 24px;
-            transition: var(--transition);
-            text-align: center;
+            padding: 28px;
             position: relative;
             overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .mode-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
         }
 
         .mode-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .mode-badge {
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .badge-hot {
-            background: rgba(255, 60, 56, 0.15);
-            color: var(--accent);
-        }
-
-        .badge-new {
-            background: rgba(94, 234, 212, 0.15);
-            color: var(--accent3);
-        }
-
-        .badge-classic {
-            background: rgba(255, 184, 0, 0.15);
-            color: var(--accent2);
-        }
-
-        .badge-tactical {
-            background: rgba(74, 222, 128, 0.15);
-            color: var(--green);
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.14);
         }
 
         .mode-icon {
-            font-size: 52px;
-            margin-bottom: 16px;
+            font-size: 32px;
+            margin-bottom: 18px;
         }
 
         .mode-card h3 {
             font-size: 22px;
             margin-bottom: 10px;
-            color: var(--text);
         }
 
         .mode-card p {
             color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        .mode-meta {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--text-muted);
-            flex-wrap: wrap;
-        }
-
-        .mode-meta span {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px 12px;
-            border-radius: 50px;
-        }
-
-        .characters-grid {
+        .character-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
         }
 
         .character-card {
-            background: var(--surface);
+            background: rgba(255,255,255,0.03);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius);
             padding: 24px;
@@ -436,267 +455,259 @@
         }
 
         .character-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.14);
         }
 
-        .character-card.multi-weapon {
-            border-left: 3px solid var(--accent2);
-        }
-
-        .char-num {
-            position: absolute;
-            top: 16px;
-            right: 20px;
-            font-size: 56px;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.04);
-            pointer-events: none;
-        }
-
-        .character-card .char-name {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 14px;
-            color: var(--text);
-        }
-
-        .weapon-tags {
+        .character-avatar {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin-bottom: 18px;
+            background: linear-gradient(135deg, rgba(255, 60, 56, 0.2), rgba(94, 234, 212, 0.1));
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .character-card h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .character-role {
+            display: inline-block;
+            padding: 6px 10px;
+            background: rgba(94,234,212,0.08);
+            border: 1px solid rgba(94,234,212,0.18);
+            border-radius: 999px;
+            color: var(--accent3);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             margin-bottom: 12px;
         }
 
-        .weapon-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 6px 14px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .weapon-tag .tag-emoji {
-            font-size: 15px;
-        }
-
-        .character-desc {
+        .character-card p {
             color: var(--text-muted);
-            font-size: 13px;
-            line-height: 1.5;
+            line-height: 1.7;
+        }
+
+        .weapon-board {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 28px;
+            overflow: hidden;
         }
 
         .weapon-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .weapon-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 18px;
+            transition: var(--transition);
+        }
+
+        .weapon-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .weapon-name {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .weapon-tag {
+            color: var(--accent2);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .weapon-item p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .control-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .controls-panel,
+        .tips-panel {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 28px;
+        }
+
+        .controls-list {
+            list-style: none;
+            display: grid;
             gap: 16px;
         }
 
-        .weapon-card {
-            background: var(--surface);
-            border: 1px solid var(--glass-border);
-            border-radius: 14px;
-            padding: 20px;
-            transition: var(--transition);
+        .controls-list li {
+            display: flex;
+            gap: 14px;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 12px;
+            align-items: flex-start;
         }
 
-        .weapon-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-4px);
-        }
-
-        .weapon-card .wname {
-            font-weight: 800;
-            font-size: 17px;
-            margin-bottom: 6px;
-            color: var(--text);
-        }
-
-        .weapon-card .wtype {
-            display: inline-block;
-            font-size: 11px;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .weapon-card .wdesc {
-            color: var(--text-muted);
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .weapon-card .wdesc.gold {
-            color: var(--gold);
-            font-weight: 600;
-            text-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
-        }
-
-        .weapon-card .wdesc.trash {
-            color: #999;
-            font-style: italic;
-            text-decoration: line-through;
-            text-decoration-color: rgba(255, 60, 56, 0.3);
-        }
-
-        .controls-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .control-item {
-            background: var(--surface);
-            border: 1px solid var(--glass-border);
-            border-radius: 14px;
-            padding: 20px;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .control-item:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-4px);
-        }
-
-        .key-icon {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            padding: 8px 18px;
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--text);
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            font-family: 'Courier New', monospace;
-        }
-
-        .control-item p {
-            color: var(--text-muted);
-            font-size: 13px;
-        }
-
-        .newsletter-wrap {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 28px;
-            align-items: stretch;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .newsletter-card {
-            background: var(--surface);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            padding: 32px;
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .newsletter-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 60, 56, 0.15), rgba(94, 234, 212, 0.08), transparent);
-            pointer-events: none;
-        }
-
-        .newsletter-badge {
-            display: inline-block;
-            padding: 7px 16px;
-            border-radius: 50px;
-            background: rgba(255, 60, 56, 0.1);
-            border: 1px solid rgba(255, 60, 56, 0.35);
-            color: var(--accent);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .newsletter-title {
-            font-size: clamp(26px, 4vw, 40px);
-            font-weight: 900;
-            margin-bottom: 14px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .newsletter-desc {
-            color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .coming-soon {
+        .keycap {
+            min-width: 54px;
+            height: 38px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 220px;
-            padding: 16px 28px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 184, 0, 0.6);
-            background: rgba(255, 184, 0, 0.08);
-            color: var(--accent2);
-            font-weight: 900;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
+            padding: 0 12px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text);
+            font-weight: 800;
+            font-size: 13px;
         }
 
-        .newsletter-mini {
-            background: rgba(255, 255, 255, 0.04);
+        .controls-list strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 16px;
+        }
+
+        .tips-panel ul {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .tips-panel li {
+            color: var(--text-muted);
+            line-height: 1.7;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .tips-panel li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent3);
+        }
+
+        .newsletter-box {
+            max-width: 880px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.03);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 260px;
-        }
-
-        .mini-label {
-            color: var(--accent3);
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .mini-box {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
-            padding: 18px 16px;
+            padding: 32px;
             text-align: center;
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.8;
         }
 
-        .mini-box strong {
-            display: block;
+        .newsletter-box h3 {
+            font-size: clamp(28px, 4vw, 42px);
+            margin-bottom: 14px;
+        }
+
+        .newsletter-box p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            width: min(100%, 420px);
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
             color: var(--text);
             font-size: 16px;
-            margin-bottom: 6px;
+            outline: none;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,0.38);
+        }
+
+        .newsletter-form button {
+            padding: 16px 28px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .invite-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .invite-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .invite-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.14);
+        }
+
+        .invite-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .invite-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .invite-card .btn-secondary {
+            padding: 12px 22px;
+            font-size: 15px;
         }
 
         .contact-grid {
@@ -762,226 +773,92 @@
             color: #fff;
         }
 
-        .invite-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .invite-card {
-            background: var(--surface);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            padding: 32px;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .invite-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-4px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .invite-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
-
-        .invite-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-
-        .invite-card .invite-desc {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .invite-input-row {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .invite-input {
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            color: var(--text);
-            font-size: 14px;
-            text-align: center;
-            width: 240px;
-            outline: none;
-            font-family: inherit;
-        }
-
-        .btn-copy {
-            padding: 12px 24px;
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 14px;
-            transition: var(--transition);
-            font-family: inherit;
-        }
-
-        .btn-copy:hover {
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-2px);
-        }
-
-        .btn-copy-text {
-            padding: 12px 28px;
-            background: var(--accent2);
-            color: #000;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 14px;
-            transition: var(--transition);
-            font-family: inherit;
-        }
-
-        .btn-copy-text:hover {
-            box-shadow: 0 0 20px rgba(255, 184, 0, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .copy-msg {
-            color: var(--green);
-            font-size: 13px;
-            margin-top: 12px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            height: 20px;
-        }
-
-        .copy-msg.show {
-            opacity: 1;
-        }
-
-        .invite-warning-box {
-            max-width: 700px;
-            margin: 30px auto 0;
-            padding: 20px 24px;
-            background: rgba(255, 60, 56, 0.06);
-            border: 1px solid rgba(255, 60, 56, 0.25);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .invite-warning-box .warn-icon {
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-
-        .invite-warning-box .warn-text {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .cta-banner {
-            text-align: center;
-            padding: 80px 0;
-            background: var(--surface);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            margin-bottom: 80px;
-        }
-
-        .cta-banner h2 {
-            font-size: 32px;
-            margin-bottom: 16px;
-        }
-
-        .cta-banner .btn-primary {
-            margin-top: 30px;
-        }
-
         footer {
-            padding: 60px 0 30px;
+            padding: 40px 0 60px;
             border-top: 1px solid var(--glass-border);
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 14px;
+            background: rgba(5, 8, 14, 0.9);
         }
 
         .footer-links {
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px 22px;
+            margin-bottom: 30px;
         }
 
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
+            font-size: 14px;
             transition: var(--transition);
         }
 
         .footer-links a:hover {
-            color: var(--accent);
+            color: var(--text);
         }
 
         .footer-divider {
-            width: 60px;
             height: 1px;
-            background: var(--glass-border);
-            margin: 0 auto 24px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+            margin: 20px 0 28px;
         }
 
-        footer .copyright {
-            font-size: 12px;
-            opacity: 0.6;
+        .copyright {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
         }
 
         @media (max-width: 900px) {
-            .newsletter-wrap {
-                grid-template-columns: 1fr;
-            }
-
             header {
                 padding: 0 20px;
             }
 
-            nav ul {
+            nav {
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(11, 12, 16, 0.96);
+                border-bottom: 1px solid var(--glass-border);
+                padding: 20px;
                 display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 18px;
             }
 
             .hamburger {
                 display: flex;
             }
+
+            .control-layout {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 640px) {
-            .hero {
-                min-height: auto;
-                padding-top: 80px;
-            }
-
             .btn-primary,
             .btn-secondary {
                 width: 100%;
-                justify-content: center;
+                padding-left: 24px;
+                padding-right: 24px;
             }
 
-            .cta-group {
+            .newsletter-form {
                 flex-direction: column;
+            }
+
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
             }
         }
     </style>
@@ -989,7 +866,7 @@
 <body>
     <header>
         <a href="#" class="logo">Kour<span>社</span></a>
-        <nav>
+        <nav id="mainNav">
             <ul>
                 <li><a href="#modes">游戏模式</a></li>
                 <li><a href="#characters">角色介绍</a></li>
@@ -998,10 +875,10 @@
                 <li><a href="#newsletter">Kour社周报</a></li>
                 <li><a href="#invite">邀请好友</a></li>
                 <li><a href="#contact">联系我们</a></li>
+                <li><a href="https://jakehe1314.github.io/Kour-v2.2/" class="btn-nav" target="_blank" rel="noopener">立即加入</a></li>
             </ul>
         </nav>
-        <button class="btn-nav" id="btnPlayNav">🔥 免费游玩</button>
-        <button class="hamburger" aria-label="Menu">
+        <button class="hamburger" aria-label="菜单" id="hamburgerBtn">
             <span></span>
             <span></span>
             <span></span>
@@ -1009,215 +886,99 @@
     </header>
 
     <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>在 <span class="highlight">Kour社</span> 争夺每一场胜利</h1>
-                    <p class="subtitle">超燃战斗体验，极致竞技快感，加入最强开局，开启你的战场传奇。</p>
-                    <div class="cta-group">
-                        <button class="btn-primary" id="btnPlayHero">🔥 免费游玩 · 即刻开战</button>
-                        <a href="#modes" class="btn-secondary">了解赛季</a>
-                    </div>
-                    <div class="warning-strip">
-                        <div class="warning-header">
-                            <div class="warning-item"><span style="color: var(--accent); font-weight: 900; font-size: 20px; flex-shrink: 0;">1</span><span style="color: var(--accent); font-weight: 700;">高强度竞技</span></div>
-                            <div class="warning-item"><span style="color: var(--accent); font-weight: 900; font-size: 20px; flex-shrink: 0;">2</span><span style="color: var(--accent); font-weight: 700;">多模式切换</span></div>
-                            <div class="warning-item"><span style="color: var(--accent); font-weight: 900; font-size: 20px; flex-shrink: 0;">3</span><span style="color: var(--accent); font-weight: 700;">高自由度玩法</span></div>
-                        </div>
-                    </div>
+        <section class="hero" id="top">
+            <div class="container hero-content">
+                <h1>在 <span class="highlight">Kour社</span>，开启你的战场传奇</h1>
+                <p class="subtitle">一款以高压对抗与快速决策为核心的射击竞技平台，集���极致机动、精准射击与团队协作。</p>
+                <div class="cta-group">
+                    <button class="btn-primary" id="btnPlay">🔥 免费游玩</button>
+                    <a href="https://jakehe1314.github.io/Kour-v2.2/" class="btn-secondary" target="_blank" rel="noopener">👀 了解更多</a>
                 </div>
             </div>
         </section>
 
         <section class="section" id="modes">
             <div class="container">
-                <h2 class="section-title">游戏模式</h2>
-                <p class="section-desc">每一种玩法都能调整你的作战节奏，快节奏冲刺与稳准压制同样精彩。</p>
-                <div class="modes-grid">
-                    <div class="mode-card">
-                        <span class="mode-badge badge-hot">热门</span>
-                        <div class="mode-icon">🔥</div>
-                        <h3>爆破竞技</h3>
-                        <p>高压推进与精准压制，适合喜欢强对抗的玩家。</p>
-                        <div class="mode-meta">
-                            <span>4v4</span>
-                            <span>12分钟</span>
-                        </div>
-                    </div>
-                    <div class="mode-card">
-                        <span class="mode-badge badge-classic">经典</span>
-                        <div class="mode-icon">🎯</div>
-                        <h3>经典对战</h3>
-                        <p>更纯粹的击杀节奏和稳定站位，适合快速上手。</p>
-                        <div class="mode-meta">
-                            <span>5v5</span>
-                            <span>对称地图</span>
-                        </div>
-                    </div>
-                    <div class="mode-card">
-                        <span class="mode-badge badge-new">新作</span>
-                        <div class="mode-icon">⚡</div>
-                        <h3>极限速射</h3>
-                        <p>快速反应，极致机动，专属于敢冲锋敢开火的玩家。</p>
-                        <div class="mode-meta">
-                            <span>3v3</span>
-                            <span>随机装置</span>
-                        </div>
-                    </div>
-                    <div class="mode-card">
-                        <span class="mode-badge badge-tactical">战术</span>
+                <div class="section-header">
+                    <span class="section-kicker">Game modes</span>
+                    <h2>多样化玩法，随时开战</h2>
+                    <p>无论你是喜欢爆破推进、埋伏反击，还是极限对决，Kour社都能给你一场节奏紧凑、充满策略的硬仗。</p>
+                </div>
+                <div class="mode-grid">
+                    <article class="mode-card">
+                        <div class="mode-icon">🧨</div>
+                        <h3>速攻模式</h3>
+                        <p>强攻路线对冲，适合追求压迫和瞬间爆发的玩家，抢占制高点决定胜负。</p>
+                    </article>
+                    <article class="mode-card">
                         <div class="mode-icon">🛡️</div>
-                        <h3>占点守备</h3>
-                        <p>团战配合和节奏控制，适合喜欢思路和站位的玩家。</p>
-                        <div class="mode-meta">
-                            <span>双旗争夺</span>
-                            <span>团队作战</span>
-                        </div>
-                    </div>
+                        <h3>防守据点</h3>
+                        <p>在限时防守中部署站位与弹药管理，出色的团队协作让你牢牢掌控战局。</p>
+                    </article>
+                    <article class="mode-card">
+                        <div class="mode-icon">⚡</div>
+                        <h3>超载对决</h3>
+                        <p>极限竞技中资源消耗会更快，判断和移动更关键，来证明你的临场反应。</p>
+                    </article>
                 </div>
             </div>
         </section>
 
         <section class="section" id="characters">
             <div class="container">
-                <h2 class="section-title">角色介绍</h2>
-                <p class="section-desc">每位角色都具备独特风格，选对角色，整局体验完全不同。</p>
-                <div class="characters-grid">
-                    <div class="character-card multi-weapon">
-                        <div class="char-num">01</div>
-                        <div class="char-name">艾伦·猎刃</div>
-                        <div class="weapon-tags">
-                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> AK-47</span>
-                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> AK-109</span>
-                        </div>
-                        <p class="character-desc">高速冲锋型角色，出手稳定，适合近距离强压和快速消耗对手。</p>
-                    </div>
-                    <div class="character-card multi-weapon">
-                        <div class="char-num">02</div>
-                        <div class="char-name">泽拉·断弦</div>
-                        <div class="weapon-tags">
-                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> AWP</span>
-                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> 9K</span>
-                        </div>
-                        <p class="character-desc">高爆发狙击型角色，擅长切入和精准一击打掉关键目标。</p>
-                    </div>
-                    <div class="character-card multi-weapon">
-                        <div class="char-num">03</div>
-                        <div class="char-name">帕克·恒流</div>
-                        <div class="weapon-tags">
-                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> P90</span>
-                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> UZI</span>
-                        </div>
-                        <p class="character-desc">爆发压制型角色，兼具机动和火力，适合打击节奏快、乱斗频繁的局面。</p>
-                    </div>
-                    <div class="character-card multi-weapon">
-                        <div class="char-num">04</div>
-                        <div class="char-name">米兰·守望</div>
-                        <div class="weapon-tags">
-                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> PKM</span>
-                        </div>
-                        <p class="character-desc">稳定输出型角��，适合站位压制，负责控场和消耗核心。</p>
-                    </div>
-                    <div class="character-card multi-weapon">
-                        <div class="char-num">05</div>
-                        <div class="char-name">瑞克·狂雷</div>
-                        <div class="weapon-tags">
-                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> RPG</span>
-                        </div>
-                        <p class="character-desc">高威胁爆破型，擅长破阵和威慑对面推进路线。</p>
-                    </div>
-                    <div class="character-card multi-weapon">
-                        <div class="char-num">06</div>
-                        <div class="char-name">赛娅·星潮</div>
-                        <div class="weapon-tags">
-                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> MP5</span>
-                        </div>
-                        <p class="character-desc">灵活支援型角色，适合团战插入与关键时刻切入支援。</p>
-                    </div>
-                    <div class="character-card multi-weapon">
-                        <div class="char-num">07</div>
-                        <div class="char-name">托马斯·影刃</div>
-                        <div class="weapon-tags">
-                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> XM1014</span>
-                        </div>
-                        <p class="character-desc">近战爆发强，擅长高压压制与快速推进，适合后排扫荡。</p>
-                    </div>
-                    <div class="character-card multi-weapon">
-                        <div class="char-num">08</div>
-                        <div class="char-name">雪莉·霜眠</div>
-                        <div class="weapon-tags">
-                            <span class="weapon-tag"><span class="tag-emoji">🔫</span> SCAR</span>
-                        </div>
-                        <p class="character-desc">平衡型角色，兼顾防守与压制，适合多场景切换。</p>
-                    </div>
+                <div class="section-header">
+                    <span class="section-kicker">Characters</span>
+                    <h2>角色选择决定你的作战方式</h2>
+                    <p>每位角色都有独特的定位与玩法风格，从前排压制到后排支援，找到最适合你的战斗节奏。</p>
+                </div>
+                <div class="character-grid">
+                    <article class="character-card">
+                        <div class="character-avatar">🦾</div>
+                        <div class="character-role">前排</div>
+                        <h3>断锋</h3>
+                        <p>高机动、高输出的强攻型角色，适合冲锋压制和快速打击敌方关键点。</p>
+                    </article>
+                    <article class="character-card">
+                        <div class="character-avatar">🎯</div>
+                        <div class="character-role">狙击</div>
+                        <h3>霜弧</h3>
+                        <p>具备超远距离压制能力，擅长从视野外控制战场节奏并开出致命一���。</p>
+                    </article>
+                    <article class="character-card">
+                        <div class="character-avatar">⚙️</div>
+                        <div class="character-role">支援</div>
+                        <h3>织影</h3>
+                        <p>提供持续增益和远程支援，适合团队配合与高难度站位压制。</p>
+                    </article>
                 </div>
             </div>
         </section>
 
         <section class="section" id="weapons">
             <div class="container">
-                <h2 class="section-title">武器速查</h2>
-                <p class="section-desc">合理武器选择决定胜负：快节奏冲锋、远距离压制、团队支援各司其职。</p>
-                <div class="weapon-grid">
-                    <div class="weapon-card">
-                        <div class="wname">AK-47</div>
-                        <span class="wtype">主武器</span>
-                        <p class="wdesc">冲锋型经典武器，稳定输出强，适合近中距离战斗。</p>
-                    </div>
-                    <div class="weapon-card">
-                        <div class="wname">AK-109</div>
-                        <span class="wtype">主武器</span>
-                        <p class="wdesc">高精准度的进攻武器，覆盖输出稳定，适合稳打稳输。</p>
-                    </div>
-                    <div class="weapon-card">
-                        <div class="wname">AWP</div>
-                        <span class="wtype">狙击</span>
-                        <p class="wdesc gold">高爆发单点输出，命中一击即产生致命威胁。</p>
-                    </div>
-                    <div class="weapon-card">
-                        <div class="wname">9K</div>
-                        <span class="wtype">冲锋</span>
-                        <p class="wdesc">快速切入，适合强压和追击，对战术路线追杀有明显优势。</p>
-                    </div>
-                    <div class="weapon-card">
-                        <div class="wname">P90</div>
-                        <span class="wtype">主武器</span>
-                        <p class="wdesc">弹匣容量大，持续压制能力极强，适合团战消耗。</p>
-                    </div>
-                    <div class="weapon-card">
-                        <div class="wname">UZI</div>
-                        <span class="wtype">副武器</span>
-                        <p class="wdesc">极快的射速和机动性能，适合近战突袭。</p>
-                    </div>
-                    <div class="weapon-card">
-                        <div class="wname">MP5</div>
-                        <span class="wtype">冲锋</span>
-                        <p class="wdesc">平衡型武器，兼顾稳定和控制输出，适合多场景切换。</p>
-                    </div>
-                    <div class="weapon-card">
-                        <div class="wname">PKM</div>
-                        <span class="wtype">重火力</span>
-                        <p class="wdesc">高威胁压制武器，适合守点和火力压制。</p>
-                    </div>
-                    <div class="weapon-card">
-                        <div class="wname">RPG</div>
-                        <span class="wtype">爆破</span>
-                        <p class="wdesc">高破坏性武器，能打断对面推进和关键站点。</p>
-                    </div>
-                    <div class="weapon-card">
-                        <div class="wname">XM1014</div>
-                        <span class="wtype">霰弹</span>
-                        <p class="wdesc">近战爆发很强，适合门口守位和强压对手。</p>
-                    </div>
-                    <div class="weapon-card">
-                        <div class="wname">SCAR</div>
-                        <span class="wtype">平衡</span>
-                        <p class="wdesc">稳定与速度兼具，适合各类中距离交火。</p>
-                    </div>
-                    <div class="weapon-card">
-                        <div class="wname">旧装备</div>
-                        <span class="wtype">废弃</span>
-                        <p class="wdesc trash">老旧杂项，已被新版本整体更新替代，战场上不再主流。</p>
+                <div class="section-header">
+                    <span class="section-kicker">Weapons</span>
+                    <h2>武器速查</h2>
+                    <p>从快速瞬发到稳定压制，各类武器各有长处，找到符合你打法的主力配置。</p>
+                </div>
+                <div class="weapon-board">
+                    <div class="weapon-grid">
+                        <div class="weapon-item">
+                            <div class="weapon-name"><span>霜雪突击步枪</span><span class="weapon-tag">近中距离</span></div>
+                            <p>稳定输出、可控后坐力，适合新手和强攻型玩家快速建立优势。</p>
+                        </div>
+                        <div class="weapon-item">
+                            <div class="weapon-name"><span>烈焰冲锋枪</span><span class="weapon-tag">近距离</span></div>
+                            <p>高火力压制与爆发强度，适合贴脸战斗和快速清空敌人。</p>
+                        </div>
+                        <div class="weapon-item">
+                            <div class="weapon-name"><span>黯夜狙击枪</span><span class="weapon-tag">远距离</span></div>
+                            <p>高单次伤害，适合保持视野并给予敌人致命压制。</p>
+                        </div>
+                        <div class="weapon-item">
+                            <div class="weapon-name"><span>星河轻机枪</span><span class="weapon-tag">区域压制</span></div>
+                            <p>极高弹幕输出，适合持续压制和覆盖关键路线。</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1225,32 +986,51 @@
 
         <section class="section" id="controls">
             <div class="container">
-                <h2 class="section-title">操作指南</h2>
-                <p class="section-desc">掌握基本操作后，战场上的节奏和反应能力会大幅提升。</p>
-                <div class="controls-grid">
-                    <div class="control-item">
-                        <div class="key-icon">W</div>
-                        <p>前进，推进路线规划，适合快速切进敌方范围。</p>
+                <div class="section-header">
+                    <span class="section-kicker">Controls</span>
+                    <h2>操作指南</h2>
+                    <p>简单易上手的键位设计，帮助你在战场上迅速进入状态，提升反应和移动效率。</p>
+                </div>
+                <div class="control-layout">
+                    <div class="controls-panel">
+                        <ul class="controls-list">
+                            <li>
+                                <span class="keycap">WASD</span>
+                                <div>
+                                    <strong>移动</strong>
+                                    <span>自由移动，切换前后左右的站位路线。</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="keycap">鼠标左键</span>
+                                <div>
+                                    <strong>射击</strong>
+                                    <span>精准压制目标，利用步枪和狙击的差异进行输出。</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="keycap">Shift</span>
+                                <div>
+                                    <strong>疾跑</strong>
+                                    <span>在危险区域快速穿梭，制造机动性优势。</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="keycap">E</span>
+                                <div>
+                                    <strong>交互</strong>
+                                    <span>拾取补给、切换武器或完成关键指令。</span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="control-item">
-                        <div class="key-icon">A / D</div>
-                        <p>左右移动，配合走位和切枪，主动更具优势。</p>
-                    </div>
-                    <div class="control-item">
-                        <div class="key-icon">S</div>
-                        <p>后撤，适用于调整节奏或规避高危路线。</p>
-                    </div>
-                    <div class="control-item">
-                        <div class="key-icon">Shift</div>
-                        <p>冲刺，强移动和瞬间拉扯对位的重要操作。</p>
-                    </div>
-                    <div class="control-item">
-                        <div class="key-icon">Space</div>
-                        <p>跳跃和平台切换，规划高地与掩体使用。</p>
-                    </div>
-                    <div class="control-item">
-                        <div class="key-icon">Mouse</div>
-                        <p>精准瞄准与灵敏移动，决定你在战场上的命中率。</p>
+                    <div class="tips-panel">
+                        <ul>
+                            <li>优先控制视野，用低位移动制造节奏变化。</li>
+                            <li>根据角色属性选择站位：前排负责压制，后排负责支援。</li>
+                            <li>不要在不利区域停留，及时撤离以保留生存与胜率。</li>
+                            <li>团队配合能决定胜负，提前沟通和位置分工至关重要。</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -1258,75 +1038,66 @@
 
         <section class="section" id="newsletter">
             <div class="container">
-                <div class="newsletter-wrap">
-                    <div class="newsletter-card">
-                        <span class="newsletter-badge">Kour社周报</span>
-                        <h3 class="newsletter-title">更多资讯、赛事和版本更新，都在这里。</h3>
-                        <p class="newsletter-desc">最新赛季的平衡调整、活动信息和热门攻略，我们会在第一时间更新，帮助你更快适应战场节奏。</p>
-                        <div class="coming-soon">🚀 即将上线</div>
-                    </div>
-                    <div class="newsletter-mini">
-                        <div class="mini-label">速报</div>
-                        <div class="mini-box">
-                            <strong>赛季预告</strong>
-                            新地图与重制装备将于本周同步上线，强化移动与控点系统。
-                        </div>
-                    </div>
+                <div class="newsletter-box">
+                    <span class="section-kicker">Kour社周报</span>
+                    <h3>每周更新最新玩法、活动和版本说明</h3>
+                    <p>订阅 Kour 社周报，第一时间参与活动、获取新地图更新和角色调整。</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="输入你的邮箱" aria-label="邮箱">
+                        <button type="submit">立即订阅</button>
+                    </form>
                 </div>
             </div>
         </section>
 
         <section class="section" id="invite">
             <div class="container">
-                <h2 class="section-title">邀请好友</h2>
-                <p class="section-desc">把战斗邀请给你最亲密的战友，一起开启更高强度的对战体验。</p>
-                <div class="invite-grid">
-                    <div class="invite-card">
-                        <div class="invite-icon">🎮</div>
-                        <h3>邀请码</h3>
-                        <p class="invite-desc">复制后可直接分享，快速进入同一战队或活动。</p>
-                        <div class="invite-input-row">
-                            <input class="invite-input" type="text" value="Kour-Invite-2026" readonly>
-                            <button class="btn-copy" id="copyInvite">复制</button>
-                        </div>
-                        <div class="copy-msg" id="copyMsg">已复制</div>
-                    </div>
-                    <div class="invite-card">
-                        <div class="invite-icon">🤝</div>
-                        <h3>好友招募</h3>
-                        <p class="invite-desc">加入更稳定的队伍，组建强力作战小队，提升胜率。</p>
-                        <button class="btn-copy-text" id="copyTextBtn">复制招募文案</button>
-                        <div class="copy-msg" id="copyTextMsg">已复制</div>
-                    </div>
+                <div class="section-header">
+                    <span class="section-kicker">Invite</span>
+                    <h2>邀请好友一同开战</h2>
+                    <p>和伙伴一起组队挑战高难度关卡，享受更加刺激的配合与策略性对决。</p>
                 </div>
-                <div class="invite-warning-box">
-                    <div class="warn-icon">⚠️</div>
-                    <div class="warn-text">仅限合法、健康、非恶意形式邀请，禁止违规传播或误导行为。</div>
+                <div class="invite-grid">
+                    <article class="invite-card">
+                        <div class="contact-icon">🎉</div>
+                        <h3>组队挑战</h3>
+                        <p>邀请熟悉的朋友加入战局，搭配多种角色和战术方案。</p>
+                        <a href="https://jakehe1314.github.io/Kour-v2.2/" class="btn-secondary" target="_blank" rel="noopener">立即组队</a>
+                    </article>
+                    <article class="invite-card">
+                        <div class="contact-icon">🏆</div>
+                        <h3>竞技排行</h3>
+                        <p>通过日常挑战和排位争夺更高段位，赢取更多战场荣誉。</p>
+                        <a href="https://jakehe1314.github.io/Kour-v2.2/" class="btn-secondary" target="_blank" rel="noopener">查看排行</a>
+                    </article>
                 </div>
             </div>
         </section>
 
         <section class="section" id="contact">
             <div class="container">
-                <h2 class="section-title">联系我们</h2>
-                <p class="section-desc">我们欢迎玩家交流、反馈和合作。</p>
+                <div class="section-header">
+                    <span class="section-kicker">Contact</span>
+                    <h2>联系我们</h2>
+                    <p>如果你对 Kour 社有任何建议、合作意向或想要加入我们，欢迎联系。</p>
+                </div>
                 <div class="contact-grid">
                     <div class="contact-card">
-                        <div class="contact-icon">🧑‍💼</div>
+                        <div class="contact-icon">📱</div>
                         <h3>社团成员一</h3>
                         <p>社团成员一主页，可直接查看更多内容和更新。</p>
                         <a href="https://space.bilibili.com/1171654058" class="contact-link" target="_blank" rel="noopener">访问主页 →</a>
                     </div>
 
                     <div class="contact-card">
-                        <div class="contact-icon">🧑‍🎨</div>
+                        <div class="contact-icon">🎮</div>
                         <h3>社团成员二</h3>
                         <p>社团成员二主页，可直接查看更多内容和更新。</p>
                         <a href="https://space.bilibili.com/520273938?spm_id_from=333.40164.0.0" class="contact-link" target="_blank" rel="noopener">访问主页 →</a>
                     </div>
 
                     <div class="contact-card">
-                        <div class="contact-icon">🧑‍🚀</div>
+                        <div class="contact-icon">🎧</div>
                         <h3>社团成员三</h3>
                         <p>社团成员三主页，可直接查看更多内容和更新。</p>
                         <a href="https://space.bilibili.com/3546971302267858" class="contact-link" target="_blank" rel="noopener">访问主页 →</a>
@@ -1335,21 +1106,21 @@
                     <div class="contact-card">
                         <div class="contact-icon">🤝</div>
                         <h3>站长</h3>
-                        <p>站长主页，欢迎交流和合作。</p>
+                        <p>站长主页，欢迎交流和互关。</p>
                         <a href="https://space.bilibili.com/1768253735" class="contact-link" target="_blank" rel="noopener">访问主页 →</a>
                     </div>
                 </div>
             </div>
         </section>
-
-        <div class="container">
-            <div class="cta-banner">
-                <h2>准备好了吗？战场在等你。</h2>
-                <p style="color: var(--text-muted);">选择你的角色，拿起武器，在 Kour社 证明你的实力。</p>
-                <button class="btn-primary" id="btnPlayBanner">🔥 免费游玩 · 即刻开战</button>
-            </div>
-        </div>
     </main>
+
+    <div class="container">
+        <div class="cta-banner" style="margin: 0 auto 60px; max-width: 980px; background: linear-gradient(135deg, rgba(255,60,56,0.12), rgba(94,234,212,0.08)); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 28px 20px; text-align: center;">
+            <h2 style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 12px;">准备好了吗？战场在等你。</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">选择你的角色，拿起武器，在 Kour社 证明你的实力。</p>
+            <button class="btn-primary" id="btnPlayBanner">🔥 免费游玩 · 即刻开战</button>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -1371,39 +1142,60 @@
         </div>
     </footer>
 
+    <div class="game-overlay" id="gameOverlay">
+        <div class="game-modal">
+            <div class="game-modal-header">
+                <span>Kour社 | 即刻开战</span>
+                <button class="btn-close" id="closeGameModal" aria-label="关闭">×</button>
+            </div>
+            <iframe src="https://jakehe1314.github.io/Kour-v2.2/" title="Kour社邀请页"></iframe>
+        </div>
+    </div>
+
     <script>
-        const inviteCode = 'Kour-Invite-2026';
-        const recruitText = 'Kour社招募新成员，热爱竞技 FPS 和团队协作，欢迎加入我们！';
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mainNav = document.getElementById('mainNav');
+        const gameOverlay = document.getElementById('gameOverlay');
+        const closeGameModal = document.getElementById('closeGameModal');
+        const btnPlay = document.getElementById('btnPlay');
+        const btnPlayBanner = document.getElementById('btnPlayBanner');
 
-        function showCopyMessage(el) {
-            el.classList.add('show');
-            setTimeout(() => el.classList.remove('show'), 1200);
-        }
-
-        document.getElementById('copyInvite').addEventListener('click', function () {
-            navigator.clipboard.writeText(inviteCode).then(() => {
-                showCopyMessage(document.getElementById('copyMsg'));
-            }).catch(() => {
-                showCopyMessage(document.getElementById('copyMsg'));
-            });
+        hamburgerBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
         });
 
-        document.getElementById('copyTextBtn').addEventListener('click', function () {
-            navigator.clipboard.writeText(recruitText).then(() => {
-                showCopyMessage(document.getElementById('copyTextMsg'));
-            }).catch(() => {
-                showCopyMessage(document.getElementById('copyTextMsg'));
-            });
+        const openInvite = () => {
+            window.open('https://jakehe1314.github.io/Kour-v2.2/', '_blank', 'noopener');
+        };
+
+        const openGameOverlay = () => {
+            gameOverlay.classList.add('active');
+            document.querySelector('.game-modal iframe').src = 'https://jakehe1314.github.io/Kour-v2.2/';
+        };
+
+        const closeGameOverlay = () => {
+            gameOverlay.classList.remove('active');
+        };
+
+        btnPlay.addEventListener('click', () => {
+            openInvite();
+            openGameOverlay();
+        });
+        btnPlayBanner.addEventListener('click', () => {
+            openInvite();
+            openGameOverlay();
+        });
+        closeGameModal.addEventListener('click', closeGameOverlay);
+
+        gameOverlay.addEventListener('click', (event) => {
+            if (event.target === gameOverlay) {
+                closeGameOverlay();
+            }
         });
 
-        document.getElementById('btnPlayHero').addEventListener('click', function () {
-            alert('Kour社：即刻开战，准备好迎接战场了吗？');
-        });
-        document.getElementById('btnPlayNav').addEventListener('click', function () {
-            alert('Kour社：即刻开战，准备好迎接战场了吗？');
-        });
-        document.getElementById('btnPlayBanner').addEventListener('click', function () {
-            alert('Kour社：即刻开战，准备好迎接战场了吗？');
+        document.querySelector('.newsletter-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            alert('订阅成功！Kour社周报将会第一时间通知你。');
         });
     </script>
 </body>
